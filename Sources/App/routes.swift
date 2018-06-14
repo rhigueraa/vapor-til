@@ -7,5 +7,11 @@ public func routes(_ router: Router) throws {
         return "Hello, world!"
     }
 
-    // Example of configuring a controller
+    router.post("api", "acronyms") { req -> Future<Acronym> in
+        return try req.content.decode(Acronym.self)
+            .flatMap(to: Acronym.self) { acronym in
+                return acronym.save(on: req)
+        }
+    }
 }
+
