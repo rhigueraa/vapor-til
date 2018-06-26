@@ -15,6 +15,7 @@ public func configure(
     services.register(router, as: Router.self)
     var middlewares = MiddlewareConfig()
     middlewares.use(ErrorMiddleware.self)
+    middlewares.use(FileMiddleware.self)
     services.register(middlewares)
     // Configure a database
     // 1
