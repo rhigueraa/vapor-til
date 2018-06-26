@@ -19,7 +19,7 @@ struct CategoriesController: RouteCollection {
     func getAllHandler(_ req: Request) throws -> Future<[Category]> {
         return Category.query(on: req).all()
     }
-    
+      
     func getHandler(_ req: Request) throws -> Future<Category> {
         return try req.parameters.next(Category.self)
     }

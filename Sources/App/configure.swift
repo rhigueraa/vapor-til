@@ -1,6 +1,7 @@
 // 1
 import FluentPostgreSQL
 import Vapor
+import Leaf
 
 public func configure(
     _ config: inout Config,
@@ -8,6 +9,7 @@ public func configure(
     _ services: inout Services
     ) throws { // 2
     try services.register(FluentPostgreSQLProvider())
+    try services.register(LeafProvider())
     let router = EngineRouter.default()
     try routes(router)
     services.register(router, as: Router.self)
@@ -60,4 +62,6 @@ public func configure(
     var commandConfig = CommandConfig.default()
     commandConfig.use(RevertCommand.self, as: "revert")
     services.register(commandConfig)
+    
+    config.prefer(LeafRenderer.self, for: ViewRenderer.self)
 }
