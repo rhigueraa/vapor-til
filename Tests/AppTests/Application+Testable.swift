@@ -7,7 +7,7 @@ extension Application {
     static func testable(envArgs: [String]? = nil) throws -> Application {
         var config = Config.default()
         var services = Services.default()
-        var env = Environment.testing
+        var env = Environment.production
         if let environmentArgs = envArgs {
             env.arguments = environmentArgs
         }
